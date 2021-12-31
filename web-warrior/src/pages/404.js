@@ -1,11 +1,15 @@
 import React from 'react'
+import Layout from '../components/Layout'
 
 export default function NotFound() {
     return (
-        <div>
-            <h2>404</h2>
-            <p>Sorry page does not exist</p>
-        </div>
+        <Layout>
+            {/* content b/w layout wrapper is children of the wrapper and we can collect it in Layout component as prop from each page */}
+            <div>
+                <h2>404</h2>
+                <p>Sorry page does not exist</p>
+            </div>
+        </Layout>
     )
 }
 
