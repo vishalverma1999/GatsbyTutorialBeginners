@@ -8,3 +8,5 @@ export default function Projects() {
         </div>
     )
 }
+
+// http://localhost:8000/project - To access this route just create index.js file inside project folder, since we know index file is the base route

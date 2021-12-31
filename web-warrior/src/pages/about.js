@@ -8,3 +8,9 @@ export default function About() {
         </div>
     )
 }
+
+
+/*
+gatsby mein route nahi banana padta lag se bas jo tune file name diya hai use hi /karke enter karde chrome par. Eg: http://localhost:8000/about
+But this http://localhost:8000/index will not work because index file is a base route and it can be accessed by just only http://localhost:8000/
+ */
