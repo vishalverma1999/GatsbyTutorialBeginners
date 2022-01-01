@@ -1,0 +1,30 @@
+.header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 40px;
+    align-items: center;
+  }
+  .header h2 {
+    font-size: 4em;
+  }
+  .header h3 {
+    font-size: 3em;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  .btn {
+    display: inline-block;
+    background: #D42990;
+    padding: 10px 16px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-weight: 500;
+  }
+
+/* 
+css modules are a way for us to scope styles to specific components or pages, so we can create a module apply it to a specific react
+component or page then what's going to happen behind the scenes is that module will be scoped to that particular component so any classes that we have in that module or selectors defined in that module will then not apply to other components where we don't import that module and it scopes it using random strings and identifiers that it attaches to the selectors and classes. eg: home.module--header--tyb45, home.module - identifier, header - classes/selectors, tyb45 - random string
+
+ one more thing i want to mention it's always a good idea to use class or id selectors inside these modules for example if i was to come over to project.module.css and just say h3 without any selector like color: red;  now i'm going to save this and come over localhost/project and you see it works so you might be thinking well why not, but it's not going to scope it there's no way to scope that style to just this h3 so it might have an effect on other things as well so if i go home we can see right here we get this thing red as well because it's now not scoped to the individual component so in order for these styles to be scoped you should use either class selectors or id selectors
+  
+*/
