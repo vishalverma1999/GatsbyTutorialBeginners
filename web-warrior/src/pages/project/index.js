@@ -5,8 +5,10 @@ import Layout from "../../components/Layout"
 import { portfolio, projectStyling } from "../../styles/project.module.css" // This is the preferred way to import css module that you created. You can also import all styles using the import * as styles syntax e.g. import * as styles from './mystyles.module.css'. However, this won’t allow webpack to treeshake your styles so we discourage you from using this syntax. Migrating all your CSS could be painful or you’re relying on third-party packages that require you to use CommonJS. Link to preffered way gatsbyDocs https://www.gatsbyjs.com/docs/reference/release-notes/migrating-from-v2-to-v3/#css-modules-are-imported-as-es-modules
 
 export default function Projects({ children, data }) {
-  console.log(data)
-  const projects = data.allMarkdownRemark.nodes // projects is an array
+
+  console.log(data);
+  const projects = data.projects.nodes; // projects is an array
+  const contact = data.contact.siteMetadata.contact;
 
   return (
     <Layout>
@@ -26,6 +28,7 @@ export default function Projects({ children, data }) {
             </Link>
           ))}
         </div>
+        <p>Like What You See? Email me at {contact} for a quote!</p>
       </div>
     </Layout>
   )
@@ -36,7 +39,7 @@ export default function Projects({ children, data }) {
 // export page query
 export const query = graphql`
 query ProjectsPage {
-  allMarkdownRemark(sort: {fields: frontmatter___date, order: DESC}) {   
+  projects: allMarkdownRemark(sort: {fields: frontmatter___date, order: DESC}) {   
     nodes {
       frontmatter {
         title
@@ -46,6 +49,13 @@ query ProjectsPage {
       id
     }
   }
+  contact: site{
+    siteMetadata{
+      contact
+    }
+  }
 }
 `
+// Multiple Queries in a single page, one is allMarkdownRemark and other is site.......that's how multiple queries are created
+// another thing we could actually name these parts of the query if we want to as given above 'projects' and 'contact'. Although it's not compulsory but it sometimes help to reduce confusing in deciding that what the data is about, we are getting after query
 // (sort: {fields: frontmatter___date, order: DESC}) , this is the sorting or odering of the query by date
