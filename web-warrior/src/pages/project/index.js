@@ -1,4 +1,5 @@
 import { graphql, Link } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react"
 import Layout from "../../components/Layout"
 // import * as styles from '../../styles/project.module.css'
@@ -22,6 +23,7 @@ export default function Projects({ children, data }) {
           {projects.map(project => (
             <Link to={"/project/" + project.frontmatter.slug} key={project.id}>
               <div>
+              <GatsbyImage image={project.frontmatter.thumb.childImageSharp.gatsbyImageData} alt="project thumbnail"/>
                 <h3> {project.frontmatter.title} </h3>
                 <p>{project.frontmatter.stack}</p>
               </div>
@@ -37,25 +39,32 @@ export default function Projects({ children, data }) {
 // http://localhost:8000/project - To access this route just create index.js file inside project folder, since we know index file is the base route
 
 // export page query
-export const query = graphql`
+export const query = graphql` 
 query ProjectsPage {
-  projects: allMarkdownRemark(sort: {fields: frontmatter___date, order: DESC}) {   
+  projects: allMarkdownRemark(sort: {order: DESC, fields: frontmatter___date}) {
     nodes {
       frontmatter {
-        title
-        stack
         slug
+        stack
+        title
+        thumb {
+          childImageSharp {
+            gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
+          }
+        }
       }
       id
     }
   }
-  contact: site{
-    siteMetadata{
+  contact: site {
+    siteMetadata {
       contact
     }
   }
-}
-`
+}`
+
+
+// when gatsby sees thumb and it sees the value of that to be a reference to an image file  that is-  thumb: ../images/thumbs/coffee.png  . Hence it turns it into a file node and we can use the child image sharp on a file node. so if you think of this as a file node if we go into the thumb we should see now child image sharp and inside it's we will se fixed, fluid and gatsbyImageData and we will use that accordingly
 // Multiple Queries in a single page, one is allMarkdownRemark and other is site.......that's how multiple queries are created
 // another thing we could actually name these parts of the query if we want to as given above 'projects' and 'contact'. Although it's not compulsory but it sometimes help to reduce confusing in deciding that what the data is about, we are getting after query
 // (sort: {fields: frontmatter___date, order: DESC}) , this is the sorting or odering of the query by date

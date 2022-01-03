@@ -10,15 +10,15 @@ module.exports = {
   plugins: [
     'gatsby-transformer-remark',    
     `gatsby-plugin-image`,                // gatsby image plugin gives us access to an image component 
-    `gatsby-plugin-sharp`,                // responsible for processing our images and creating extra image options for our graphql layer 
     `gatsby-transformer-sharp`,           // Needed for dynamic images, responsible for processing our images and creating extra image options for our graphql layer
+    `gatsby-plugin-sharp`,                // responsible for processing our images and creating extra image options for our graphql layer 
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-          name: `images`,
-          path: `${__dirname}/src/images/`,
-     },
-  },
+        name: `images`,
+        path: `${__dirname}/src/images/`,
+      },
+    },
     {
       // source file plugin -  basically tells gatsby how to get documents from a directory
       // You can have multiple instances of this plugin to read source nodes from different locations on your filesystem.

@@ -33,80 +33,11 @@ query Banner {
   file(relativePath: {eq: "banner.png"}) {
     childImageSharp {
       gatsbyImageData(
-        layout: FIXED
-        placeholder: BLURRED
+        layout: CONSTRAINED,
+        placeholder: BLURRED,
         formats: [AUTO, WEBP, AVIF]
       )
     }
   }
 }
 `
-
-
-
-/*
-
-
-
-
-
-
-
-
-
-
-01:38
-open up my terminal and come over here
-01:40
-and i'm going to paste
-01:41
-in and press enter and then also while
-01:44
-that's going on i'm going to come back
-01:45
-over here
-01:46
-and i'm going to grab this because these
-01:48
-are the other two things we need to
-01:49
-install as well
-01:50
-so remember this one gives us access to
-01:52
-the image component
-01:54
-which we're going to use and this one
-01:55
-right here is responsible
-01:57
-for processing the images and giving us
-01:59
-a graphql interface
-02:01
-so i'm going to copy that as well come
-02:03
-back over here paste them
-02:04
-in and press enter to install all right
-02:07
-so now that's done the next thing i need
-02:09
-to do is come to the source folder let
-02:11
-me just close some of these
-02:13
-and create an images folder now remember
-02:16
-this has to go inside the source folder
-02:19
-because
-02:19
-we're going to process those images if
-02:22
-we place it inside static
-02:24
-then it's just going to be made
-02:25
-available to the browser
- */
