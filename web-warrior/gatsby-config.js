@@ -8,7 +8,17 @@ module.exports = {
   /* Your site config here */
   // all right so we know now that gatsby can work with multiple data sources and it can add them all to our graphql layer however for it to do this for each source that we use we need to install and register a source plugin and that way gatsby knows how to connect to that data source now the source plugins are all registered inside the gatsby config file inside the plugins array right here now sometimes plugins can be registered as just a string name of the plugin, other times as an object when they need extra configuration options now plugins also need to be installed into our project using npm so gatsby can find them as well 
   plugins: [
-    'gatsby-transformer-remark',
+    'gatsby-transformer-remark',    
+    `gatsby-plugin-image`,                // gatsby image plugin gives us access to an image component 
+    `gatsby-plugin-sharp`,                // responsible for processing our images and creating extra image options for our graphql layer 
+    `gatsby-transformer-sharp`,           // Needed for dynamic images, responsible for processing our images and creating extra image options for our graphql layer
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+          name: `images`,
+          path: `${__dirname}/src/images/`,
+     },
+  },
     {
       // source file plugin -  basically tells gatsby how to get documents from a directory
       // You can have multiple instances of this plugin to read source nodes from different locations on your filesystem.
